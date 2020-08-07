@@ -9,7 +9,7 @@ class Screen:
         pygame.display.set_icon(pygame.image.load("images/icon.png"))
 
     def fill(self):
-        self.screen.fill((0, 0, 0))
+        self.screen.blit(pygame.image.load("images/background.jpg"), (0, 0))
 
     def add_player(self, player):
         self.screen.blit(player.playerImg, (player.playerX, player.playerY))
