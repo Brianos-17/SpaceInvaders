@@ -3,10 +3,10 @@ import random
 
 class Enemy:
 
-    def __init__(self):
-        self.enemyImg = pygame.image.load("images/enemy1.png")
-        self.enemyX = 0 #random.randint(0, 736)
-        self.enemyY = 0 #random.randint(50, 150)
+    def __init__(self, image, x, y):
+        self.enemyImg = image
+        self.enemyX = x
+        self.enemyY = y
 
     def move_enemy(self, x, y):
         self.enemyX += x
