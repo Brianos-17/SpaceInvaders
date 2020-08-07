@@ -1,29 +1,25 @@
 import pygame
+from screen import Screen
+from player import Player
+from enemy import Enemy, EnemyA
 
 # Initalise the pygame
 pygame.init()
 
-# Create the screen
-screen = pygame.display.set_mode((800, 600))
-pygame.display.set_caption("Space Invaders")
-pygame.display.set_icon(pygame.image.load("images/icon.png"))
-
-# Player
-playerImg = pygame.image.load("images/player.png")
-playerX = 370
-playerY = 480
+screen = Screen()
+player = Player()
 playerX_change = 0
 playerY_change = 0
 
+enemy = EnemyA()
 
-def player(x, y):
-    screen.blit(playerImg, (x, y))
-
+screen.add_player(player)
+screen.add_enemy(enemy)
 
 # Game Loop
 running = True
 while running:
-    screen.fill((0, 0, 0))
+    screen.fill()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -31,13 +27,13 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                playerX_change = -0.3
+                playerX_change -= 10
             if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                playerX_change = +0.3
+                playerX_change += 10
             if event.key == pygame.K_UP or event.key == pygame.K_w:
-                playerY_change = -0.3
+                playerY_change -= 10
             if event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                playerY_change = +0.3
+                playerY_change += 10
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_a or event.key == pygame.K_RIGHT or event.key == pygame.K_d:
@@ -45,19 +41,13 @@ while running:
             if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_DOWN or event.key == pygame.K_s:
                 playerY_change = 0
 
-    playerX += playerX_change
-    if playerX <= 0:
-        playerX = 0
-    elif playerX >= 736:
-        playerX = 736
-
-    playerY += playerY_change
-    if playerY >= 536:
-        playerY = 536
-    elif playerY <= 372:
-        playerY = 372
-
-    player(playerX, playerY)
+    player.move_player(playerX_change, playerY_change)
+    screen.add_player(player)
+    enemy.move_enemy()
+    screen.add_enemy(enemy)
     pygame.display.update()
+
+    # enemy(enemyX, enemyY)
+
 
 
