@@ -1,7 +1,7 @@
 import pygame
 from screen import Screen
 from player import Player
-from enemy import Enemy
+from enemy import Enemy, EnemyA
 
 # Initalise the pygame
 pygame.init()
@@ -11,7 +11,7 @@ player = Player()
 playerX_change = 0
 playerY_change = 0
 
-enemy = Enemy()
+enemy = EnemyA()
 enemyX_change = 0
 enemyY_change = 0
 

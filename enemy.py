@@ -16,3 +16,11 @@ class Enemy:
         elif self.playerX >= 736:
             self.playerX = 736
         self.enemyY += y
+
+
+class EnemyA(Enemy):
+
+    def __init__(self):
+        super().__init__(pygame.image.load("images/enemyA.png"),
+                       random.randint(0, 736),
+                       0)
