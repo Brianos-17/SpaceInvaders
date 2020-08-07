@@ -7,20 +7,39 @@ class Enemy:
         self.enemyImg = image
         self.enemyX = x
         self.enemyY = y
+        self.enemyX_change = 0.3
 
-    def move_enemy(self, x, y):
-        self.enemyX += x
-        if self.playerX <= 0:
-            self.playerX = 0
-            # self.playerY +=
-        elif self.playerX >= 736:
-            self.playerX = 736
-        self.enemyY += y
+    def move_enemy(self):
+        self.enemyX += self.enemyX_change
+        if self.enemyX <= 0:
+            self.enemyX = 0
+            self.enemyY += 32
+            self.enemyX_change = 0.3
+        elif self.enemyX >= 736:
+            self.enemyX = 736
+            self.enemyY += 32
+            self.enemyX_change = -0.3
 
 
 class EnemyA(Enemy):
 
     def __init__(self):
         super().__init__(pygame.image.load("images/enemyA.png"),
-                       random.randint(0, 736),
-                       0)
+                         random.randint(0, 736),
+                         0)
+
+
+class EnemyB(Enemy):
+
+    def __init__(self):
+        super().__init__(pygame.image.load("images/enemyB.png"),
+                         random.randint(0, 736),
+                         0)
+
+
+class EnemyC(Enemy):
+
+    def __init__(self):
+        super().__init__(pygame.image.load("images/enemyC.png"),
+                         random.randint(0, 736),
+                         0)

@@ -12,8 +12,6 @@ playerX_change = 0
 playerY_change = 0
 
 enemy = EnemyA()
-enemyX_change = 0
-enemyY_change = 0
 
 screen.add_player(player)
 screen.add_enemy(enemy)
@@ -45,6 +43,7 @@ while running:
 
     player.move_player(playerX_change, playerY_change)
     screen.add_player(player)
+    enemy.move_enemy()
     screen.add_enemy(enemy)
     pygame.display.update()
 
