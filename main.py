@@ -1,6 +1,7 @@
 import pygame
 from screen import Screen
 from player import Player
+from enemy import Enemy
 
 # Initalise the pygame
 pygame.init()
@@ -10,20 +11,12 @@ player = Player()
 playerX_change = 0
 playerY_change = 0
 
-screen.add_player(player)
-
-# Enemy
-enemyImg = pygame.image.load("images/enemy1.png")
-enemyX = 370
-enemyY = 50
+enemy = Enemy()
 enemyX_change = 0
 enemyY_change = 0
 
-
-
-# def enemy(x, y):
-#     screen.blit(enemyImg, (x, y))
-
+screen.add_player(player)
+screen.add_enemy(enemy)
 
 # Game Loop
 running = True
@@ -52,6 +45,8 @@ while running:
 
     player.move_player(playerX_change, playerY_change)
     screen.add_player(player)
+    screen.add_enemy(enemy)
+    pygame.display.update()
 
     # enemy(enemyX, enemyY)
 
