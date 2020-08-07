@@ -27,13 +27,13 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                playerX_change -= 8
+                playerX_change -= 10
             if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                playerX_change += 8
+                playerX_change += 10
             if event.key == pygame.K_UP or event.key == pygame.K_w:
-                playerY_change -= 8
+                playerY_change -= 10
             if event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                playerY_change += 8
+                playerY_change += 10
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_a or event.key == pygame.K_RIGHT or event.key == pygame.K_d:

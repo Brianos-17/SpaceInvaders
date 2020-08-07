@@ -7,18 +7,18 @@ class Enemy:
         self.enemyImg = image
         self.enemyX = x
         self.enemyY = y
-        self.enemyX_change = 8
+        self.enemyX_change = 7
 
     def move_enemy(self):
         self.enemyX += self.enemyX_change
         if self.enemyX <= 0:
             self.enemyX = 0
             self.enemyY += 32
-            self.enemyX_change = 8
+            self.enemyX_change = 7
         elif self.enemyX >= 736:
             self.enemyX = 736
             self.enemyY += 32
-            self.enemyX_change = -8
+            self.enemyX_change = -7
 
 
 class EnemyA(Enemy):
