@@ -26,7 +26,3 @@ class Bullet:
         self.image = pygame.image.load("images/bullet.png")
         self.bulletX = player.playerX + 23
         self.bulletY = player.playerY - 20
-        self.bulletState = "ready"
-
-    def fire(self):
-        self.bulletState = "fire"

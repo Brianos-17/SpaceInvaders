@@ -14,6 +14,7 @@ playerY_change = 0
 enemy = EnemyA()
 
 screen.add_player(player)
+bullets = []
 screen.add_enemy(enemy)
 
 # Game Loop
@@ -36,8 +37,7 @@ while running:
                 playerY_change += 10
             if event.key == pygame.K_SPACE:
                 bullet = Bullet(player)
-                bullet.fire()
-                screen.add_bullet(bullet)
+                bullets.append(bullet)
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_a or event.key == pygame.K_RIGHT or event.key == pygame.K_d:
@@ -51,9 +51,12 @@ while running:
     enemy.move_enemy()
     screen.add_enemy(enemy)
 
-    if bullet.bulletState == "fire":
+    for bullet in bullets:
         screen.add_bullet(bullet)
+        if bullet.bulletY < 0:
+            bullets.remove(bullet)
 
+    print(len(bullets))
 
     pygame.display.update()
 
