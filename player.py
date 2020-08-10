@@ -2,7 +2,6 @@ import pygame
 
 
 class Player:
-
     def __init__(self):
         self.playerImg = pygame.image.load("images/player.png")
         self.playerX = 370
@@ -22,3 +21,12 @@ class Player:
             self.playerY = 372
 
 
+class Bullet:
+    def __init__(self, player):
+        self.image = pygame.image.load("images/bullet.png")
+        self.bulletX = player.playerX + 23
+        self.bulletY = player.playerY - 20
+        self.bulletState = "ready"
+
+    def fire(self):
+        self.bulletState = "fire"

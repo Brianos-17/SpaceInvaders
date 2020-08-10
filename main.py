@@ -1,6 +1,6 @@
 import pygame
 from screen import Screen
-from player import Player
+from player import Player, Bullet
 from enemy import Enemy, EnemyA
 
 # Initalise the pygame
@@ -34,6 +34,10 @@ while running:
                 playerY_change -= 10
             if event.key == pygame.K_DOWN or event.key == pygame.K_s:
                 playerY_change += 10
+            if event.key == pygame.K_SPACE:
+                bullet = Bullet(player)
+                bullet.fire()
+                screen.add_bullet(bullet)
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_a or event.key == pygame.K_RIGHT or event.key == pygame.K_d:
@@ -43,8 +47,14 @@ while running:
 
     player.move_player(playerX_change, playerY_change)
     screen.add_player(player)
+
     enemy.move_enemy()
     screen.add_enemy(enemy)
+
+    if bullet.bulletState == "fire":
+        screen.add_bullet(bullet)
+
+
     pygame.display.update()
 
     # enemy(enemyX, enemyY)

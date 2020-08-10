@@ -13,10 +13,11 @@ class Screen:
 
     def add_player(self, player):
         self.screen.blit(player.playerImg, (player.playerX, player.playerY))
-        # pygame.display.update()
 
     def add_enemy(self, enemy):
         self.screen.blit(enemy.enemyImg, (enemy.enemyX, enemy.enemyY))
-        # pygame.display.update()
 
+    def add_bullet(self, bullet):
+        bullet.bulletY -= 10
+        self.screen.blit(bullet.image, (bullet.bulletX, bullet.bulletY))
 
