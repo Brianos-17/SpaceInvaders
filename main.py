@@ -11,12 +11,12 @@ screen = Screen()
 player = Player()
 playerX_change = 0
 playerY_change = 0
-
-enemy = EnemyA()
-
 screen.add_player(player)
 bullets = []
-screen.add_enemy(enemy)
+
+enemyA = EnemyA()
+enemies = [enemyA]
+screen.add_enemy(enemyA)
 
 # Game Loop
 running = True
@@ -29,13 +29,13 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                playerX_change -= 10
+                playerX_change -= 0.5
             if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                playerX_change += 10
+                playerX_change += 0.5
             if event.key == pygame.K_UP or event.key == pygame.K_w:
-                playerY_change -= 10
+                playerY_change -= 0.5
             if event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                playerY_change += 10
+                playerY_change += 0.5
             if event.key == pygame.K_SPACE:
                 bullet = Bullet(player)
                 bullets.append(bullet)
@@ -49,13 +49,15 @@ while running:
     player.move_player(playerX_change, playerY_change)
     screen.add_player(player)
 
-    enemy.move_enemy()
-    screen.add_enemy(enemy)
-
-    for bullet in bullets:
-        screen.add_bullet(bullet)
-        if bullet.bulletY < 0:
-            bullets.remove(bullet)
+    for enemy in enemies:
+        enemy.move_enemy()
+        screen.add_enemy(enemy)
+        for bullet in bullets:
+            screen.add_bullet(bullet)
+            if bullet.bulletY < 0:
+                bullets.remove(bullet)
+            if enemy.chek_for_collision(bullet):
+                print("Got em")
 
     pygame.display.update()
 

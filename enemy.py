@@ -1,5 +1,6 @@
 import pygame
 import random
+import math
 
 class Enemy:
 
@@ -7,18 +8,27 @@ class Enemy:
         self.enemyImg = image
         self.enemyX = x
         self.enemyY = y
-        self.enemyX_change = 7
+        self.enemyX_change = 0.3
 
     def move_enemy(self):
         self.enemyX += self.enemyX_change
         if self.enemyX <= 0:
             self.enemyX = 0
             self.enemyY += 32
-            self.enemyX_change = 7
+            self.enemyX_change = 0.3
         elif self.enemyX >= 736:
             self.enemyX = 736
             self.enemyY += 32
-            self.enemyX_change = -7
+            self.enemyX_change = -0.3
+
+    def chek_for_collision(self, bullet):
+        distance = math.sqrt(
+            math.pow(self.enemyX - bullet.bulletX, 2) +
+            math.pow(self.enemyY - bullet.bulletY, 2)
+        )
+        if distance < 20:
+            return True
+        return False
 
 
 class EnemyA(Enemy):
