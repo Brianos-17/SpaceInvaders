@@ -7,6 +7,7 @@ from enemy import Enemy, EnemyA
 pygame.init()
 
 screen = Screen()
+
 player = Player()
 playerX_change = 0
 playerY_change = 0
@@ -56,11 +57,8 @@ while running:
         if bullet.bulletY < 0:
             bullets.remove(bullet)
 
-    print(len(bullets))
-
     pygame.display.update()
 
-    # enemy(enemyX, enemyY)
 
 
 

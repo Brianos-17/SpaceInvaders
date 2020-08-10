@@ -24,7 +24,7 @@ class Enemy:
 class EnemyA(Enemy):
 
     def __init__(self):
-        super().__init__(pygame.image.load("images/enemyA.png"),
+        super().__init__(pygame.image.load("images/enemyA.png").convert_alpha(),
                          random.randint(0, 736),
                          0)
 

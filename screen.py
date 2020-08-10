@@ -8,6 +8,9 @@ class Screen:
         pygame.display.set_caption("Space Invaders")
         pygame.display.set_icon(pygame.image.load("images/icon.png"))
 
+        # Loading bullet image here and reusing to reduce load
+        self.bulletImage = pygame.image.load("images/bullet.png").convert_alpha()
+
     def fill(self):
         self.screen.blit(pygame.image.load("images/background.jpg"), (0, 0))
 
@@ -19,5 +22,5 @@ class Screen:
 
     def add_bullet(self, bullet):
         bullet.bulletY -= 10
-        self.screen.blit(bullet.image, (bullet.bulletX, bullet.bulletY))
+        self.screen.blit(self.bulletImage, (bullet.bulletX, bullet.bulletY))
 

@@ -3,7 +3,7 @@ import pygame
 
 class Player:
     def __init__(self):
-        self.playerImg = pygame.image.load("images/player.png")
+        self.playerImg = pygame.image.load("images/player.png").convert_alpha()
         self.playerX = 370
         self.playerY = 480
 
@@ -23,6 +23,5 @@ class Player:
 
 class Bullet:
     def __init__(self, player):
-        self.image = pygame.image.load("images/bullet.png")
         self.bulletX = player.playerX + 23
         self.bulletY = player.playerY - 20
