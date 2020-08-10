@@ -57,7 +57,10 @@ while running:
             if bullet.bulletY < 0:
                 bullets.remove(bullet)
             if enemy.chek_for_collision(bullet):
-                print("Got em")
+                screen.kill_enemy(enemy)
+                pygame.display.update()
+
+                enemies.remove(enemy)
 
     pygame.display.update()
 

@@ -6,6 +6,7 @@ class Enemy:
 
     def __init__(self, image, x, y):
         self.enemyImg = image
+        self.explosionImage = pygame.image.load("images/explosion.png").convert_alpha()
         self.enemyX = x
         self.enemyY = y
         self.enemyX_change = 0.3
@@ -22,11 +23,10 @@ class Enemy:
             self.enemyX_change = -0.3
 
     def chek_for_collision(self, bullet):
-        distance = math.sqrt(
+        if math.sqrt(
             math.pow(self.enemyX - bullet.bulletX, 2) +
             math.pow(self.enemyY - bullet.bulletY, 2)
-        )
-        if distance < 20:
+        ) < 30:
             return True
         return False
 

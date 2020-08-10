@@ -25,3 +25,6 @@ class Screen:
         bullet.bulletY -= 0.5
         self.screen.blit(self.bulletImage, (bullet.bulletX, bullet.bulletY))
 
+    def kill_enemy(self, enemy):
+        self.screen.blit(enemy.explosionImage, (enemy.enemyX, enemy.enemyY))
+
