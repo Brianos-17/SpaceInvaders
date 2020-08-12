@@ -1,53 +1,94 @@
 import pygame
+import random
 from screen import Screen
-from player import Player
-from enemy import Enemy, EnemyA
+from player import Player, Bullet
+from enemy import EnemyA, EnemyB, EnemyC
 
 # Initalise the pygame
-pygame.init()
+enemies = []
 
-screen = Screen()
-player = Player()
-playerX_change = 0
-playerY_change = 0
+def run():
+    pygame.init()
 
-enemy = EnemyA()
+    screen = Screen()
 
-screen.add_player(player)
-screen.add_enemy(enemy)
-
-# Game Loop
-running = True
-while running:
-    screen.fill()
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                playerX_change -= 10
-            if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                playerX_change += 10
-            if event.key == pygame.K_UP or event.key == pygame.K_w:
-                playerY_change -= 10
-            if event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                playerY_change += 10
-
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_a or event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                playerX_change = 0
-            if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                playerY_change = 0
-
-    player.move_player(playerX_change, playerY_change)
+    player = Player()
+    playerX_change = 0
+    playerY_change = 0
     screen.add_player(player)
-    enemy.move_enemy()
-    screen.add_enemy(enemy)
-    pygame.display.update()
+    bullets = []
 
-    # enemy(enemyX, enemyY)
+    for enemy in enemies:
+        screen.add_enemy(enemy)
+
+    # Game Loop
+    running = True
+    while running:
+        screen.fill()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT or event.key == pygame.K_a:
+                    playerX_change -= 0.5
+                if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+                    playerX_change += 0.5
+                if event.key == pygame.K_UP or event.key == pygame.K_w:
+                    playerY_change -= 0.5
+                if event.key == pygame.K_DOWN or event.key == pygame.K_s:
+                    playerY_change += 0.5
+                if event.key == pygame.K_SPACE:
+                    if len(bullets) < 5:
+                        bullet = Bullet(player)
+                        bullets.append(bullet)
+
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_LEFT or event.key == pygame.K_a or event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+                    playerX_change = 0
+                if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_DOWN or event.key == pygame.K_s:
+                    playerY_change = 0
+
+        player.move_player(playerX_change, playerY_change)
+        screen.add_player(player)
+
+        for enemy in enemies:
+            enemy.move_enemy()
+            screen.add_enemy(enemy)
+            for bullet in bullets:
+                screen.add_bullet(bullet)
+                if bullet.bulletY < 0:
+                    bullets.remove(bullet)
+                if enemy.check_for_collision(bullet):
+                    screen.kill_enemy(enemy)
+                    # Show Explosion briefly
+                    pygame.display.update()
+                    enemies.remove(enemy)
+
+        if len(enemies) == 0:
+            x = random.randint(0, 320)
+            while len(enemies) < 4:
+                create_enemyA(x)
+                x += 64
+
+        pygame.display.update()
 
 
+def create_enemyA(x):
+    enemy = EnemyA(x)
+    enemies.append(enemy)
 
+
+def create_enemyB(x):
+    enemy = EnemyB(x)
+    enemies.append(enemy)
+
+
+def create_enemyC(x):
+    enemy = EnemyC(x)
+    enemies.append(enemy)
+
+
+if __name__ == '__main__':
+    run()
