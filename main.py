@@ -15,8 +15,8 @@ def run():
     pygame.init()
 
     screen = Screen()
-    mixer.music.load('sounds/background.wav')
-    mixer.music.play(-1)
+    # mixer.music.load('sounds/background.wav')
+    # mixer.music.play(-1)
 
     player = Player()
     playerX_change = 0
@@ -48,7 +48,7 @@ def run():
                 if event.key == pygame.K_DOWN or event.key == pygame.K_s:
                     playerY_change += 0.5
                 if event.key == pygame.K_SPACE:
-                    if len(bullets) < 5:
+                    if len(bullets) < 50  :
                         bullet = Bullet(player)
                         bullets.append(bullet)
                         mixer.Sound('sounds/laser.wav').play()
@@ -65,9 +65,12 @@ def run():
         for enemy in enemies:
             enemy.move_enemy()
             screen.add_enemy(enemy)
+            if enemy.check_for_collision(player):
+                screen.game_over()
+                running = False
             for bullet in bullets:
                 screen.add_bullet(bullet)
-                if bullet.bulletY < 0:
+                if bullet.Y < 0:
                     bullets.remove(bullet)
                 if enemy.check_for_collision(bullet):
                     screen.kill_enemy(enemy)
@@ -79,14 +82,23 @@ def run():
 
         if len(enemies) == 0:
             x = random.randint(0, 320)
-            while len(enemies) < 5:
-                if score < 20:
-                    create_enemyA(x)
-                if 20 <= score <= 50:
-                    create_enemyB(x)
-                if score > 50:
+            if score < 80:
+                while len(enemies) < 5:
+                    if score < 20:
+                        create_enemyA(x)
+                    if 20 <= score < 50:
+                        create_enemyB(x)
+                    if 50 <= score < 80:
+                        create_enemyC(x)
+                    x += 64
+            if 80 <= score < 150:
+                while len(enemies) < 10:
                     create_enemyC(x)
-                x += 64
+                    x += 64
+            if 150 <= score:
+                while len(enemies) < 15:
+                    create_enemyC(x)
+                    x += 64
 
         pygame.display.update()
 
