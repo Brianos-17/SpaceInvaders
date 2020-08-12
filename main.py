@@ -6,9 +6,9 @@ from enemy import EnemyA, EnemyB, EnemyC
 
 # Initalise the pygame
 enemies = []
-enemyA_image = pygame.image.load("images/enemyA.png").convert_alpha()
-enemyB_image = pygame.image.load("images/enemyB.png").convert_alpha()
-enemyC_image = pygame.image.load("images/enemyC.png").convert_alpha()
+enemyA_image = pygame.image.load("images/enemyA.png")
+enemyB_image = pygame.image.load("images/enemyB.png")
+enemyC_image = pygame.image.load("images/enemyC.png")
 
 def run():
     pygame.init()
