@@ -3,6 +3,7 @@ import random
 from screen import Screen
 from player import Player, Bullet
 from enemy import EnemyA, EnemyB, EnemyC
+from pygame import mixer
 
 # Initalise the pygame
 enemies = []
@@ -14,6 +15,8 @@ def run():
     pygame.init()
 
     screen = Screen()
+    mixer.music.load('sounds/background.wav')
+    mixer.music.play(-1)
 
     player = Player()
     playerX_change = 0
@@ -48,6 +51,7 @@ def run():
                     if len(bullets) < 5:
                         bullet = Bullet(player)
                         bullets.append(bullet)
+                        mixer.Sound('sounds/laser.wav').play()
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT or event.key == pygame.K_a or event.key == pygame.K_RIGHT or event.key == pygame.K_d:
@@ -70,6 +74,7 @@ def run():
                     # Show Explosion briefly
                     pygame.display.update()
                     enemies.remove(enemy)
+                    mixer.Sound('sounds/explosion.wav').play()
                     score += 1
 
         if len(enemies) == 0:

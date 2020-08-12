@@ -7,7 +7,7 @@ class Screen:
         self.screen = pygame.display.set_mode((800, 600))
         pygame.display.set_caption("Space Invaders")
         pygame.display.set_icon(pygame.image.load("images/icon.png"))
-        self.font = pygame.font.Font('freesansbold.ttf', 32)
+        self.font = pygame.font.Font('freesansbold.ttf', 32)  # Default font for pygame
 
         # Loading bullet image here and reusing to reduce load
         self.bulletImage = pygame.image.load("images/bullet.png").convert_alpha()

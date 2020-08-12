@@ -15,7 +15,7 @@ class Enemy:
         if math.sqrt(
             math.pow(self.enemyX - bullet.bulletX, 2) +
             math.pow(self.enemyY - bullet.bulletY, 2)
-        ) < 30:
+        ) < 35:
             return True
         return False
 
