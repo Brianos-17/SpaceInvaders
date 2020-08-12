@@ -7,6 +7,7 @@ class Screen:
         self.screen = pygame.display.set_mode((800, 600))
         pygame.display.set_caption("Space Invaders")
         pygame.display.set_icon(pygame.image.load("images/icon.png"))
+        self.font = pygame.font.Font('freesansbold.ttf', 32)
 
         # Loading bullet image here and reusing to reduce load
         self.bulletImage = pygame.image.load("images/bullet.png").convert_alpha()
@@ -27,4 +28,8 @@ class Screen:
 
     def kill_enemy(self, enemy):
         self.screen.blit(enemy.explosionImage, (enemy.enemyX, enemy.enemyY))
+
+    def show_score(self, score):
+        score_value = self.font.render("Score: " + str(score), True, (255, 255, 255))
+        self.screen.blit(score_value, (10, 10))
 

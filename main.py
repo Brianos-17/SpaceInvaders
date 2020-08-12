@@ -19,6 +19,7 @@ def run():
     playerX_change = 0
     playerY_change = 0
     screen.add_player(player)
+    score = 0
     bullets = []
 
     for enemy in enemies:
@@ -28,6 +29,7 @@ def run():
     running = True
     while running:
         screen.fill()
+        screen.show_score(score)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -68,11 +70,17 @@ def run():
                     # Show Explosion briefly
                     pygame.display.update()
                     enemies.remove(enemy)
+                    score += 1
 
         if len(enemies) == 0:
             x = random.randint(0, 320)
-            while len(enemies) < 4:
-                create_enemyA(x)
+            while len(enemies) < 5:
+                if score < 20:
+                    create_enemyA(x)
+                if 20 <= score <= 50:
+                    create_enemyB(x)
+                if score > 50:
+                    create_enemyC(x)
                 x += 64
 
         pygame.display.update()
