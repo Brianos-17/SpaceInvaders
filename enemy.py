@@ -11,11 +11,11 @@ class Enemy:
         self.enemyY = y
         self.enemyX_change = xchange
 
-    def check_for_collision(self, bullet):
+    def check_for_collision(self, collision):
         if math.sqrt(
-            math.pow(self.enemyX - bullet.bulletX, 2) +
-            math.pow(self.enemyY - bullet.bulletY, 2)
-        ) < 30:
+            math.pow(self.enemyX - collision.X, 2) +
+            math.pow(self.enemyY - collision.Y, 2)
+        ) < 35:
             return True
         return False
 
