@@ -40,8 +40,9 @@ def run():
                 if event.key == pygame.K_DOWN or event.key == pygame.K_s:
                     playerY_change += 0.5
                 if event.key == pygame.K_SPACE:
-                    bullet = Bullet(player)
-                    bullets.append(bullet)
+                    if len(bullets) < 5:
+                        bullet = Bullet(player)
+                        bullets.append(bullet)
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT or event.key == pygame.K_a or event.key == pygame.K_RIGHT or event.key == pygame.K_d:

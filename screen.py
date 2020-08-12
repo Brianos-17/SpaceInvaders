@@ -22,7 +22,7 @@ class Screen:
         self.screen.blit(enemy.enemyImg, (enemy.enemyX, enemy.enemyY))
 
     def add_bullet(self, bullet):
-        bullet.bulletY -= 0.5
+        bullet.bulletY -= 0.3
         self.screen.blit(self.bulletImage, (bullet.bulletX, bullet.bulletY))
 
     def kill_enemy(self, enemy):
