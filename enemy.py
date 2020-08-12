@@ -1,6 +1,6 @@
 import pygame
-import random
 import math
+
 
 class Enemy:
 
@@ -22,8 +22,8 @@ class Enemy:
 
 class EnemyA(Enemy):
 
-    def __init__(self, x):
-        super().__init__(pygame.image.load("images/enemyA.png").convert_alpha(), x, 0, 0.3)
+    def __init__(self, image, x):
+        super().__init__(image, x, 0, 0.3)
 
     def move_enemy(self):
         self.enemyX += self.enemyX_change
@@ -39,8 +39,8 @@ class EnemyA(Enemy):
 
 class EnemyB(Enemy):
 
-    def __init__(self, x):
-        super().__init__(pygame.image.load("images/enemyB.png"), x, 0, 0.6)
+    def __init__(self, image, x):
+        super().__init__(image, x, 0, 0.6)
 
     def move_enemy(self):
         self.enemyX += self.enemyX_change
@@ -56,8 +56,8 @@ class EnemyB(Enemy):
 
 class EnemyC(Enemy):
 
-    def __init__(self, x):
-        super().__init__(pygame.image.load("images/enemyC.png"), x, 0, 0.9)
+    def __init__(self, image, x):
+        super().__init__(image, x, 0, 0.9)
 
     def move_enemy(self):
         self.enemyX += self.enemyX_change
