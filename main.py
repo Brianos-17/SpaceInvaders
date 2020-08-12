@@ -6,6 +6,9 @@ from enemy import EnemyA, EnemyB, EnemyC
 
 # Initalise the pygame
 enemies = []
+enemyA_image = pygame.image.load("images/enemyA.png").convert_alpha()
+enemyB_image = pygame.image.load("images/enemyB.png").convert_alpha()
+enemyC_image = pygame.image.load("images/enemyC.png").convert_alpha()
 
 def run():
     pygame.init()
@@ -76,17 +79,17 @@ def run():
 
 
 def create_enemyA(x):
-    enemy = EnemyA(x)
+    enemy = EnemyA(enemyA_image, x)
     enemies.append(enemy)
 
 
 def create_enemyB(x):
-    enemy = EnemyB(x)
+    enemy = EnemyB(enemyB_image, x)
     enemies.append(enemy)
 
 
 def create_enemyC(x):
-    enemy = EnemyC(x)
+    enemy = EnemyC(enemyC_image, x)
     enemies.append(enemy)
 
 
